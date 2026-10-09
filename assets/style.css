@@ -1,0 +1,104 @@
+/* GlassFront Markets: the site's one stylesheet (2026-10-09). The card's brand: navy wordmark, bright-blue
+   lines with slate diamonds, Georgia-style serif for the brand voice, Montserrat for everything practical. */
+:root {
+  --navy: #005d9e;
+  --navy-deep: #0a2f57;
+  --accent: #008eff;
+  --slate: #365472;
+  --ink: #101010;
+  --muted: #55606e;
+  --paper: #ffffff;
+  --mist: #f2f8fe;
+  --line: #d9e6f2;
+  --serif: Georgia, "Gelasio", "Times New Roman", serif;
+  --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
+img { max-width: 100%; display: block; }
+a { color: var(--navy); }
+.wrap { width: min(1100px, 100% - 40px); margin-inline: auto; }
+
+/* the card's line-with-diamond, used as a divider */
+.rule { position: relative; height: 2px; background: var(--accent); margin: 18px 0; }
+.rule::after { content: ""; position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; background: var(--slate);
+  transform: translate(-50%, -50%) rotate(45deg); }
+
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; }
+.top .mark { font: 400 26px var(--serif); color: var(--navy); text-decoration: none; white-space: nowrap; }
+.top .mark span { font: 500 11px var(--sans); letter-spacing: 4px; color: var(--ink); margin-left: 6px; }
+.top nav { display: flex; gap: 22px; font-weight: 500; font-size: 15px; }
+.top nav a { text-decoration: none; color: var(--slate); }
+.top nav a:hover { color: var(--accent); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 40px; align-items: center; padding: 34px 0 54px; }
+.hero .logo { width: min(520px, 100%); }
+.hero h1 { font: 500 clamp(22px, 2.6vw, 30px)/1.35 var(--sans); color: var(--ink); margin: 26px 0 12px; }
+.hero p { color: var(--muted); margin: 0 0 26px; max-width: 34em; }
+.hero .machine { justify-self: center; width: min(300px, 70vw); filter: drop-shadow(0 16px 22px rgba(10, 47, 87, .16)); }
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 9px; padding: 13px 22px; border-radius: 10px; font: 600 16px var(--sans);
+  text-decoration: none; border: 2px solid var(--navy); transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 93, 158, .2); }
+.btn.primary { background: var(--navy); color: #fff; }
+.btn.ghost { background: #fff; color: var(--navy); }
+.btn svg { width: 18px; height: 18px; }
+
+/* sections */
+section { padding: 60px 0; }
+section.mist { background: var(--mist); border-block: 1px solid var(--line); }
+h2 { font: 400 clamp(28px, 3.4vw, 38px)/1.2 var(--serif); color: var(--navy); margin: 0 0 6px; text-align: center; }
+.sub { text-align: center; color: var(--muted); margin: 0 auto 34px; max-width: 40em; }
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.grid.three { grid-template-columns: repeat(3, 1fr); }
+.tile { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 22px 20px; }
+.tile h3 { margin: 10px 0 6px; font: 600 18px var(--sans); color: var(--ink); }
+.tile p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.tile .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--mist); color: var(--navy); display: grid; place-items: center; }
+.tile .ic svg { width: 21px; height: 21px; }
+.badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px 26px; font-weight: 600; color: var(--slate); letter-spacing: .4px; }
+.badges span::before { content: "◆"; color: var(--accent); margin-right: 10px; font-size: 12px; }
+.badges span:first-child::before { content: none; }
+
+/* contact */
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: center; }
+.person h3 { font: italic 700 34px var(--serif); margin: 0; }
+.person .role { color: var(--accent); font-weight: 600; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; }
+.person ul { list-style: none; padding: 0; margin: 16px 0 0; }
+.person li { display: flex; gap: 10px; align-items: center; margin: 8px 0; font-weight: 500; }
+.person li svg { width: 19px; height: 19px; color: var(--accent); flex: none; }
+.person a { color: var(--ink); text-decoration: none; }
+.request { background: var(--navy-deep); color: #fff; border-radius: 16px; padding: 28px; }
+.request h3 { font: 400 26px var(--serif); margin: 0 0 8px; }
+.request p { color: #cfe3f5; margin: 0 0 18px; }
+.request .btn.primary { background: #fff; color: var(--navy-deep); border-color: #fff; }
+
+footer { padding: 26px 0 40px; color: var(--muted); font-size: 14px; text-align: center; }
+
+/* the /card page (what the business card's QR opens) */
+body.card { background: linear-gradient(180deg, var(--mist), #fff 40%); min-height: 100vh; }
+.cardpage { width: min(460px, 100% - 32px); margin: 0 auto; padding: 34px 0 40px; text-align: center; }
+.cardpage .logo { width: 100%; margin: 0 auto 8px; }
+.cardpage h1 { font: italic 700 40px/1.1 var(--serif); margin: 22px 0 2px; }
+.cardpage .role { color: var(--accent); font-weight: 600; letter-spacing: 4px; font-size: 13px; }
+.cardpage .stack { display: grid; gap: 12px; margin: 26px 0 18px; }
+.cardpage .btn { justify-content: center; font-size: 17px; padding: 15px; }
+.cardpage small { color: var(--muted); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; padding-top: 14px; }
+  .hero .logo { margin-inline: auto; }
+  .hero p { margin-inline: auto; }
+  .buttons { justify-content: center; }
+  .hero .machine { order: -1; width: min(190px, 50vw); }
+  .grid, .grid.three { grid-template-columns: 1fr 1fr; }
+  .contact { grid-template-columns: 1fr; }
+  .top nav { display: none; }
+}
+@media (max-width: 560px) {
+  .grid, .grid.three { grid-template-columns: 1fr; }
+  section { padding: 44px 0; }
+}
