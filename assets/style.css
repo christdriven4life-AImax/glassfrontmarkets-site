@@ -117,3 +117,7 @@ body.card { background: linear-gradient(180deg, var(--mist), #fff 40%); min-heig
 @media (prefers-reduced-motion: reduce) { .cardpage .face { transition: none; } }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (max-width: 900px) { .badges { flex-direction: column; align-items: center; text-align: center; gap: 4px; } .badges span::before { content: none; } }   /* phone: two centered lines, no stray diamond (10-09) */
+.promises { list-style: none; padding: 0; margin: 0 0 24px; display: grid; gap: 8px; }   /* Elias 10-09: no cost (an amenity, no commission deals), same-day reply */
+.promises li { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); font-size: 16px; }
+.promises svg { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 2px; }
+@media (max-width: 900px) { .promises { width: fit-content; max-width: 100%; margin-inline: auto; justify-items: start; } .promises li { text-align: left; } }
