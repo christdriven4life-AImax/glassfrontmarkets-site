@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://glassfrontmarkets.com/sitemap.xml
