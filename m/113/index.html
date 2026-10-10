@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine 113 · GlassFront Markets</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+.lang { position: absolute; top: 14px; right: 16px; display: flex; gap: 6px; }
+.lang button { font: 600 13px var(--sans); border: 1.5px solid var(--navy); background: #fff; color: var(--navy); border-radius: 8px; padding: 5px 10px; }
+.lang button.on { background: var(--navy); color: #fff; }
+.machine { color: var(--slate); font-weight: 600; letter-spacing: 3px; font-size: 13px; margin-top: 18px; }
+.cardpage h1 { font: 700 28px/1.2 var(--sans); font-style: normal; margin: 8px 0 4px; }
+.big { font-size: 18px !important; padding: 18px !important; }
+[data-es] { display: none; }
+body.es [data-en] { display: none; }
+body.es [data-es] { display: revert; }
+</style>
+</head>
+<body class="card">
+<div class="lang"><button id="en">EN</button><button id="es">ES</button></div>
+<main class="cardpage">
+  <img class="logo" src="../../assets/logo_full.svg" alt="GlassFront Markets">
+  <div class="machine"><span data-en>MACHINE</span><span data-es>MÁQUINA</span> 113</div>
+  <h1><span data-en>Want something new in this machine?</span><span data-es>¿Quieres algo nuevo en esta máquina?</span></h1>
+  <p class="sub" style="margin:6px 0 0"><span data-en>Tell us what you'd buy. It takes 20 seconds.</span><span data-es>Dinos qué comprarías. Toma 20 segundos.</span></p>
+  <div class="stack">
+    <a class="btn primary big" href="https://docs.google.com/forms/d/1AaI7rxxLN5c7AiJVhkLO41QH-Sjh8xYF1e3IfC2YYTc/viewform?usp=pp_url&entry.1648541527=Machine%20113&entry.733703616=Request%20/%20Pedido"><span data-en>🍫 What should we carry?</span><span data-es>🍫 ¿Qué quieres que tengamos?</span></a>
+    <a class="btn ghost big" href="https://docs.google.com/forms/d/1AaI7rxxLN5c7AiJVhkLO41QH-Sjh8xYF1e3IfC2YYTc/viewform?usp=pp_url&entry.1648541527=Machine%20113&entry.733703616=Problem%20/%20Problema"><span data-en>🛠 Something wrong?</span><span data-es>🛠 ¿Algo no funciona?</span></a>
+    <a class="btn ghost" href="tel:+13033350805"><span data-en>Call 303-335-0805</span><span data-es>Llamar 303-335-0805</span></a>
+  </div>
+  <div class="rule"></div>
+  <small><span data-en>Thanks for helping us stock what you love.</span><span data-es>Gracias por ayudarnos a tener lo que te gusta.</span><br>GlassFront Markets · <a href="../../">glassfrontmarkets.com</a></small>
+</main>
+<script>
+(function () {
+  var saved = null; try { saved = localStorage.getItem("gfm_lang"); } catch (e) {}
+  var es = saved ? saved === "es" : (navigator.language || "").toLowerCase().indexOf("es") === 0;
+  function set(isEs) {
+    document.body.classList.toggle("es", isEs); document.documentElement.lang = isEs ? "es" : "en";
+    document.getElementById("es").classList.toggle("on", isEs); document.getElementById("en").classList.toggle("on", !isEs);
+    try { localStorage.setItem("gfm_lang", isEs ? "es" : "en"); } catch (e) {}
+  }
+  document.getElementById("en").onclick = function () { set(false); };
+  document.getElementById("es").onclick = function () { set(true); };
+  set(es);
+})();
+</script>
+</body>
+</html>
