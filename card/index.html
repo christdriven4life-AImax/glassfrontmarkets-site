@@ -14,9 +14,12 @@
 <body class="card">
 <!-- What the business card's QR opens (glassfrontmarkets.com/card). The printed QR never changes; this page can. -->
 <main class="cardpage">
-  <img class="logo" src="../assets/logo_full.svg" alt="GlassFront Markets: You provide the space. We handle the rest.">
-  <h1>Elias</h1>
-  <div class="role">OWNER</div>
+  <button class="flip" type="button" aria-label="My business card. Tap to see the back." onclick="this.classList.toggle('back')">
+    <span class="face front"><img src="card_front.webp" alt="Business card front: GlassFront Markets, Elias, Owner"></span>
+    <span class="face rear"><img src="card_back.webp" alt="Business card back: You provide the space. We handle the rest."></span>
+  </button>
+  <div class="hint">Tap the card to flip it</div>
+  <h1 class="sr">Elias · Owner</h1>
   <div class="stack">
     <a class="btn primary" href="elias.vcf">Save my contact</a>
     <a class="btn ghost" href="tel:+13033350805">Call 303-335-0805</a>
