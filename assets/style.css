@@ -35,11 +35,12 @@ a { color: var(--navy); }
 .top nav a:hover { color: var(--accent); }
 
 /* hero */
-.hero { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 40px; align-items: center; padding: 34px 0 54px; }
+.hero { display: grid; grid-template-columns: 0.75fr 1.25fr;   /* machine left, words right: like the card (Elias 10-09) */
+        gap: 40px; align-items: center; padding: 34px 0 54px; }
 .hero .logo { width: min(520px, 100%); }
 .hero h1 { font: 500 clamp(22px, 2.6vw, 30px)/1.35 var(--sans); color: var(--ink); margin: 26px 0 12px; }
 .hero p { color: var(--muted); margin: 0 0 26px; max-width: 34em; }
-.hero .machine { justify-self: center; width: min(300px, 70vw); filter: drop-shadow(0 16px 22px rgba(10, 47, 87, .16)); }
+.hero .machine { order: -1; justify-self: center; width: min(300px, 70vw); filter: drop-shadow(0 16px 22px rgba(10, 47, 87, .16)); }
 .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn { display: inline-flex; align-items: center; gap: 9px; padding: 13px 22px; border-radius: 10px; font: 600 16px var(--sans);
   text-decoration: none; border: 2px solid var(--navy); transition: transform .15s, box-shadow .15s; }
