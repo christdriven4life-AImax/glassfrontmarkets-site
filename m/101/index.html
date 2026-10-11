@@ -22,18 +22,82 @@
 [data-es] { display: none; }
 body.es [data-en] { display: none; }
 body.es [data-es] { display: revert; }
+/* v2 (10-11): the form lives on this page; the machine is a hidden fixed value */
+.ask { text-align: left; }
+.ask fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.ask legend, .ask .q { display: block; font-weight: 600; font-size: 16px; color: var(--ink); margin: 0 0 8px; padding: 0; }
+.ask .opt { font-weight: 400; color: var(--muted); font-size: 14px; }
+.ask input[type=radio] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.kind label { cursor: pointer; width: 100%; }
+.kind input:checked + label { background: var(--navy); color: #fff; }
+.kind input:focus-visible + label, .chips input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+.more { display: grid; gap: 18px; margin: 4px 0 18px; }
+.more[hidden], .ask [hidden] { display: none !important; }
+.chips { display: grid; gap: 8px; }
+.chips label { display: block; cursor: pointer; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 16px; background: #fff; }
+.chips input:checked + label { border-color: var(--navy); background: var(--mist); color: var(--navy); font-weight: 600; box-shadow: inset 0 0 0 1px var(--navy); }
+.ask textarea, .ask input[type=text] { width: 100%; font: 16px/1.4 var(--sans); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; color: var(--ink); }
+.ask textarea { min-height: 96px; resize: vertical; }
+.ask textarea:focus, .ask input[type=text]:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0, 142, 255, .18); }
+.ask button.btn { width: 100%; cursor: pointer; }
+.ask button[disabled] { opacity: .6; cursor: default; }
+.note { text-align: center; border-radius: 14px; padding: 22px 18px; margin: 26px 0 18px; }
+.note.ok { background: var(--mist); border: 1px solid var(--line); }
+.note.ok h2 { font: 700 24px/1.2 var(--sans); color: var(--navy); margin: 0 0 6px; }
+.note.bad { background: #fff4f2; border: 1px solid #f1c5bd; color: #8a2a1b; margin: 0 0 12px; padding: 14px; font-size: 15px; }
 </style>
+<noscript><style>.ask .more { display: grid !important; }</style></noscript>
 </head>
 <body class="card">
-<div class="lang"><button id="en">EN</button><button id="es">ES</button></div>
+<div class="lang"><button type="button" id="en">EN</button><button type="button" id="es">ES</button></div>
 <main class="cardpage">
   <img class="logo" src="../../assets/logo_full.svg" alt="GlassFront Markets">
   <div class="machine"><span data-en>MACHINE</span><span data-es>MÁQUINA</span> 101</div>
   <h1><span data-en>Want something new in this machine?</span><span data-es>¿Te gustaría algo nuevo en esta máquina?</span></h1>
   <p class="sub" style="margin:6px 0 0"><span data-en>Tell us what you'd buy. It takes 20 seconds.</span><span data-es>Cuéntanos qué te gustaría comprar. Toma 20 segundos.</span></p>
-  <div class="stack">
-    <a class="btn primary big" href="https://docs.google.com/forms/d/1AaI7rxxLN5c7AiJVhkLO41QH-Sjh8xYF1e3IfC2YYTc/viewform?usp=pp_url&entry.1648541527=Machine%20101&entry.733703616=Request%20/%20Pedido"><span data-en>🍫 What should we carry?</span><span data-es>🍫 ¿Qué quieres que tengamos?</span></a>
-    <a class="btn ghost big" href="https://docs.google.com/forms/d/1AaI7rxxLN5c7AiJVhkLO41QH-Sjh8xYF1e3IfC2YYTc/viewform?usp=pp_url&entry.1648541527=Machine%20101&entry.733703616=Problem%20/%20Problema"><span data-en>🛠 Something wrong?</span><span data-es>🛠 ¿Algo no funciona?</span></a>
+  <form class="ask" id="ask" method="post" action="https://docs.google.com/forms/d/e/1FAIpQLSfdgxOS4_JyLPOK_yeErkgT7cPX6zuOacAUl-XquzNsI_oapg/formResponse">
+    <input type="hidden" name="entry.1648541527" value="Machine 101">
+    <fieldset class="kind stack">
+      <legend class="sr"><span data-en>What is this about?</span><span data-es>¿De qué se trata?</span></legend>
+      <input type="radio" id="k0" name="entry.733703616" value="Request / Pedido" required>
+      <label class="btn ghost big" for="k0"><span data-en>🍫 What should we carry?</span><span data-es>🍫 ¿Qué quieres que tengamos?</span></label>
+      <input type="radio" id="k1" name="entry.733703616" value="Problem / Problema" required>
+      <label class="btn ghost big" for="k1"><span data-en>🛠 Something wrong?</span><span data-es>🛠 ¿Algo no funciona?</span></label>
+    </fieldset>
+    <div class="more" id="more" hidden>
+      <fieldset class="chips" id="cats">
+        <legend><span data-en>What kind?</span><span data-es>¿De qué tipo?</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></legend>
+        <input type="radio" id="c0" name="entry.1419098030" value="Chips &amp; salty snacks / Papitas y botanas">
+        <label for="c0"><span data-en>Chips &amp; salty snacks</span><span data-es>Papitas y botanas</span></label>
+        <input type="radio" id="c1" name="entry.1419098030" value="Candy &amp; sweets / Dulces">
+        <label for="c1"><span data-en>Candy &amp; sweets</span><span data-es>Dulces</span></label>
+        <input type="radio" id="c2" name="entry.1419098030" value="Healthier snacks / Botanas más saludables">
+        <label for="c2"><span data-en>Healthier snacks</span><span data-es>Botanas más saludables</span></label>
+        <input type="radio" id="c3" name="entry.1419098030" value="Drinks: water, soda, juice / Bebidas: agua, refresco, jugo">
+        <label for="c3"><span data-en>Drinks: water, soda, juice</span><span data-es>Bebidas: agua, refresco, jugo</span></label>
+        <input type="radio" id="c4" name="entry.1419098030" value="Energy drinks / Bebidas energéticas">
+        <label for="c4"><span data-en>Energy drinks</span><span data-es>Bebidas energéticas</span></label>
+        <input type="radio" id="c5" name="entry.1419098030" value="Something else / Otra cosa">
+        <label for="c5"><span data-en>Something else</span><span data-es>Otra cosa</span></label>
+      </fieldset>
+      <div>
+        <label class="q" for="msg"><span data-en id="msg-en">Which item? Tell us more</span><span data-es id="msg-es">¿Qué producto? Cuéntanos más</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></label>
+        <textarea id="msg" name="entry.1256768243" maxlength="1000"></textarea>
+      </div>
+      <div>
+        <label class="q" for="who"><span data-en>Your name or phone, if you'd like a reply</span><span data-es>Tu nombre o teléfono, si quieres respuesta</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></label>
+        <input type="text" id="who" name="entry.1840015842" maxlength="120" autocomplete="off">
+      </div>
+      <div class="note bad" id="bad" hidden role="alert"><span data-en>That didn't send. Please try again, or call 303-335-0805.</span><span data-es>No se envió. Inténtalo otra vez o llama al 303-335-0805.</span></div>
+      <button class="btn primary big" type="submit" id="send"><span data-en>Send</span><span data-es>Enviar</span></button>
+    </div>
+  </form>
+  <div class="note ok" id="thanks" hidden role="status" tabindex="-1">
+    <h2><span data-en>Thank you!</span><span data-es>¡Gracias!</span></h2>
+    <p style="margin:0 0 14px"><span data-en>We got it. We read every note.</span><span data-es>Lo recibimos. Leemos cada mensaje.</span></p>
+    <button class="btn ghost" type="button" id="again"><span data-en>Send another</span><span data-es>Enviar otro</span></button>
+  </div>
+  <div class="stack" style="margin-top:0">
     <a class="btn ghost" href="tel:+13033350805"><span data-en>Call 303-335-0805</span><span data-es>Llamar 303-335-0805</span></a>
   </div>
   <div class="rule"></div>
@@ -51,6 +115,38 @@ body.es [data-es] { display: revert; }
   document.getElementById("en").onclick = function () { set(false); };
   document.getElementById("es").onclick = function () { set(true); };
   set(es);
+
+  var form = document.getElementById("ask"), more = document.getElementById("more"), cats = document.getElementById("cats");
+  var send = document.getElementById("send"), bad = document.getElementById("bad"), thanks = document.getElementById("thanks");
+  var REQUEST = "Request / Pedido";
+  function pick() {
+    var k = form.querySelector('input[name="entry.733703616"]:checked');
+    if (!k) return;
+    var isReq = k.value === REQUEST;
+    more.hidden = false;
+    cats.hidden = !isReq; cats.disabled = !isReq;   /* a problem report sends no category */
+    document.getElementById("msg-en").textContent = isReq ? "Which item? Tell us more" : "What's wrong?";
+    document.getElementById("msg-es").textContent = isReq ? "¿Qué producto? Cuéntanos más" : "¿Qué no funciona?";
+  }
+  Array.prototype.forEach.call(form.querySelectorAll('input[name="entry.733703616"]'), function (r) { r.addEventListener("change", pick); });
+  pick();
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (!form.querySelector('input[name="entry.733703616"]:checked')) return;
+    send.disabled = true; bad.hidden = true;
+    var body = new URLSearchParams(new FormData(form));
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
+    fetch(form.action, { method: "POST", mode: "no-cors", body: body, signal: ctl ? ctl.signal : undefined })
+      .then(function () {
+        form.hidden = true; thanks.hidden = false; thanks.focus();
+      })
+      .catch(function () { bad.hidden = false; })
+      .then(function () { if (timer) clearTimeout(timer); send.disabled = false; });
+  });
+  document.getElementById("again").onclick = function () {
+    form.reset(); more.hidden = true; thanks.hidden = true; form.hidden = false; window.scrollTo(0, 0);
+  };
 })();
 </script>
 </body>
