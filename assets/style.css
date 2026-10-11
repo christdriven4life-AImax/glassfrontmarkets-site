@@ -122,3 +122,7 @@ body.card { background: linear-gradient(180deg, var(--mist), #fff 40%); min-heig
 .promises svg { flex: none; width: 20px; height: 20px; color: var(--accent); margin-top: 2px; }
 @media (max-width: 900px) { .promises { width: fit-content; max-width: 100%; margin-inline: auto; justify-items: start; } .promises li { text-align: left; } }
 .sub.tagline { font: italic 20px/1.4 var(--serif); color: var(--ink); }   /* the slogan as on the card: quoted, italic serif (Elias 10-09) */
+.photos figure { margin: 0; }   /* real route photos (Elias 10-10: "give life to ... our website"); EXIF/GPS stripped, plate blurred */
+.photos img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; display: block; border: 1px solid var(--line); }
+.photos figcaption { margin-top: 8px; color: var(--muted); font-size: 14.5px; text-align: center; }
+@media (max-width: 560px) { .grid.photos { grid-template-columns: 1fr 1fr; gap: 12px; } .photos figcaption { font-size: 13px; } }
