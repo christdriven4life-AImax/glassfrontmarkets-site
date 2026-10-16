@@ -228,6 +228,14 @@ footer p { margin: 4px 0; }
   .fit-photo { order: -1; }
 }
 @media (max-width: 560px) {
+  /* 10-16 phone walk (Elias's phone, 384 css px): the full logo filled the first screen; the headline, the button and
+     the photo all sat below the fold. Smaller logo, tighter copy, the Request button rides above the fold. */
+  .hero2-grid { padding-top: 6px; gap: 14px; }
+  .hero2-words .logo { width: min(230px, 64%); }
+  .hero2-words h1 { font-size: 20px; margin: 14px 0 8px; }
+  .hero2-words p { font-size: 15.5px; margin-bottom: 14px; }
+  .promises { gap: 6px; margin-bottom: 16px; }
+  .promises li { font-size: 15px; }
   .how-photos { grid-template-columns: 1fr; }
   .places { grid-template-columns: 1fr; }
   .who-line { font-size: 17px; }
