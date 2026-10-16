@@ -80,8 +80,8 @@ h2 { font: 400 clamp(28px, 3.4vw, 38px)/1.2 var(--serif); color: var(--navy); ma
 
 /* contact */
 .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; align-items: center; }
-.person h3 { font: italic 700 34px var(--serif); margin: 0; }
-.person .role { color: var(--navy); font-weight: 600; letter-spacing: 3px; font-size: 13px; text-transform: uppercase; }
+.person h3 { font: italic 400 42px/1.05 var(--serif); letter-spacing: .5px; margin: 0; }   /* 10-16 01:2x Elias: the bold 34px name read "short and fat"; lighter weight, taller, more air */
+.person .role { color: var(--navy); font-weight: 500; letter-spacing: 4px; font-size: 12px; text-transform: uppercase; margin-top: 6px; }
 .person ul { list-style: none; padding: 0; margin: 16px 0 0; }
 .person li { display: flex; gap: 10px; align-items: center; margin: 8px 0; font-weight: 500; }
 .person li svg { width: 19px; height: 19px; color: var(--accent); flex: none; }
@@ -149,7 +149,7 @@ body.card { background: linear-gradient(180deg, var(--mist), #fff 40%); min-heig
 .hero2-photo img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 18px 18px 0 0;
   box-shadow: 0 24px 40px -18px rgba(10, 47, 87, .35); }
 .hero2-words { padding-bottom: 44px; }
-.hero2-words .logo { width: min(460px, 100%); }
+.hero2-words .logo { width: min(460px, 100%); height: auto; }   /* 10-16 01:3x phone walk: without height:auto the img kept its height attribute (338) while CSS shrank the width: the logo stood squeezed tall ("the top is smashed") */
 .hero2-words h1 { font: 500 clamp(22px, 2.5vw, 30px)/1.35 var(--sans); color: var(--ink); margin: 26px 0 12px; max-width: 22em; }
 .hero2-words p { color: var(--muted); margin: 0 0 22px; max-width: 34em; }
 
@@ -158,7 +158,7 @@ body.card { background: linear-gradient(180deg, var(--mist), #fff 40%); min-heig
 .who-line span { color: var(--navy); }
 .places { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
 .places figure { margin: 0; }
-.places img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
+.places img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover;   /* 10-16 01:3x: taller slot so each machine fits top to bottom without the empty wall beside it (Elias: "big empty space on the right looks weird") */ border-radius: 14px; border: 1px solid var(--line); }
 .places figcaption { margin-top: 8px; color: var(--muted); font-size: 14.5px; }
 
 /* sections: left-aligned from here down (the hero already is) */
@@ -168,7 +168,7 @@ section .sub { text-align: left; margin-left: 0; }
 
 .machines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .machines figure { margin: 0; }
-.machines img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); }
+.machines img { width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover;   /* 10-16 01:3x: a machine is tall; 2:3 lets the combo card lose the wall on the right and the gumball stand on the left (Elias) */ border-radius: 14px; border: 1px solid var(--line); }
 .machines figcaption { margin-top: 12px; color: var(--muted); font-size: 15.5px; line-height: 1.5; }
 .machines figcaption b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 2px; }
 .machines-note { margin: 30px 0 0; color: var(--muted); max-width: 46em; }
