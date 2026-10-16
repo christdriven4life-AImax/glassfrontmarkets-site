@@ -14,7 +14,7 @@
   --sans: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); }
 img { max-width: 100%; display: block; }
 a { color: var(--navy); }
@@ -30,7 +30,7 @@ a { color: var(--navy); }
 .top .mark { display: inline-flex; align-items: center; gap: 4px; color: var(--navy); text-decoration: none; white-space: nowrap; }
 .top .mark img { height: 26px; width: auto; display: block; }   /* the logo's own letters, not typed text (Elias 10-09) */
 .top .mark span { font: 500 11px var(--sans); letter-spacing: 4px; color: var(--ink); margin-left: 6px; }
-.top nav { display: flex; gap: 22px; font-weight: 500; font-size: 15px; }
+.top nav { display: flex; align-items: center; gap: 22px; font-weight: 500; font-size: 15px; }
 .top nav a { text-decoration: none; color: var(--slate); }
 .top nav a:hover { color: var(--accent); }
 
@@ -48,6 +48,19 @@ a { color: var(--navy); }
 .btn.primary { background: var(--navy); color: #fff; }
 .btn.ghost { background: #fff; color: var(--navy); }
 .btn svg { width: 18px; height: 18px; }
+.btn.small { padding: 8px 14px; font-size: 14px; border-radius: 8px; }
+.top nav .btn.small { color: #fff; }   /* the header's Request link reads as the one action (council should-fix, 10-16) */
+.top nav .btn.small:hover { color: #fff; }
+
+/* phones: Call + Request pinned to the bottom edge; the header nav is hidden under 900px */
+.stickybar { display: none; }
+@media (max-width: 900px) {
+  .stickybar { display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; padding: 10px max(12px, env(safe-area-inset-left)) max(10px, env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .94); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+  .stickybar .btn { flex: 1; justify-content: center; padding: 12px 10px; font-size: 15px; }
+  .stickybar .btn.ghost { flex: 0 0 auto; padding-inline: 16px; }
+  body { padding-bottom: 72px; }
+}
 
 /* sections */
 section { padding: 60px 0; }
@@ -189,9 +202,11 @@ section .sub { text-align: left; margin-left: 0; }
 .why dt { font: 600 18px var(--sans); margin: 0 0 6px; }
 .why dd { margin: 0; color: var(--muted); font-size: 15.5px; }
 
-.towns { font: 500 16px/2 var(--sans); color: var(--slate); max-width: 52em; margin: 0; }
-.towns span { white-space: nowrap; }
-.towns i { color: var(--accent); font-style: normal; font-size: 11px; margin: 0 10px; vertical-align: 2px; }
+.where-line { margin: -18px 0 22px; font: italic 18px/1.6 var(--serif); color: var(--slate); max-width: 46em; }   /* Elias 10-16: the GBP wording's feel, the rest of the towns folded in */
+.where-line span { color: var(--navy); white-space: nowrap; }
+.towns { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 0; font: 500 16px/1.8 var(--sans); color: var(--slate); max-width: 52em; }
+.towns li { white-space: nowrap; }
+.towns li + li::before { content: "◆"; color: var(--accent); font-size: 11px; margin: 0 10px; vertical-align: 2px; }   /* the card's diamond between towns, in the stylesheet not the markup (council should-fix) */
 .towns-note { color: var(--muted); margin: 18px 0 0; }
 
 .faq-wrap { max-width: 44em; }
