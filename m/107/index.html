@@ -11,13 +11,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css">
+<link rel="stylesheet" href="../../assets/style.css?v=20261016d">
 <style>
 .lang { display: flex; justify-content: flex-end; gap: 6px; padding: 12px 16px 0; }   /* its own row: absolute sat on the logo on phones (10-09) */
 .lang button { font: 600 13px var(--sans); border: 1.5px solid var(--navy); background: #fff; color: var(--navy); border-radius: 8px; padding: 5px 10px; }
 .lang button.on { background: var(--navy); color: #fff; }
-.machine { color: var(--slate); font-weight: 600; letter-spacing: 3px; font-size: 13px; margin-top: 18px; }
-.cardpage h1 { font: 700 28px/1.2 var(--sans); font-style: normal; margin: 8px 0 4px; }
+.machine { color: var(--slate); font-weight: 600; letter-spacing: 3px; font-size: 13px; margin-top: 22px; }
+.cardpage h1 { font: 700 24px/1.2 var(--sans); font-style: normal; margin: 8px 0 4px; }
+.cardpage .flip { margin-top: 6px; }
+.ask .kind.stack { margin-bottom: 12px; }
+.links.stack { margin-top: 0; }
 .big { font-size: 18px !important; padding: 18px !important; }
 [data-es] { display: none; }
 body.es [data-en] { display: none; }
@@ -51,12 +54,17 @@ body.es [data-es] { display: revert; }
 <body class="card">
 <div class="lang"><button type="button" id="en">EN</button><button type="button" id="es">ES</button></div>
 <main class="cardpage">
-  <img class="logo" src="../../assets/logo_full.svg" alt="GlassFront Markets">
+  <button class="flip" type="button" aria-label="Business card. Tap to see the back." onclick="this.classList.toggle('back')">
+    <span class="face front"><img src="../../card/card_front.webp?v=20261016" alt="Business card front: GlassFront Markets, Elias, Owner"></span>
+    <span class="face rear"><img src="../../card/card_back.webp" alt="Business card back: You provide the space. We handle the rest."></span>
+  </button>
+  <div class="hint"><span data-en>Tap the card to flip it</span><span data-es>Toca la tarjeta para voltearla</span></div>
   <div class="machine"><span data-en>MACHINE</span><span data-es>MÁQUINA</span> 107</div>
   <h1><span data-en>Want something new in this machine?</span><span data-es>¿Te gustaría algo nuevo en esta máquina?</span></h1>
-  <p class="sub" style="margin:6px 0 0"><span data-en>Tell us what you'd buy. It takes 20 seconds.</span><span data-es>Cuéntanos qué te gustaría comprar. Toma 20 segundos.</span></p>
+  <p class="sub" style="margin:6px 0 18px"><span data-en>Tell us what you'd buy. It takes 20 seconds.</span><span data-es>Cuéntanos qué te gustaría comprar. Toma 20 segundos.</span></p>
+  <a class="btn primary big" href="https://g.page/r/Carqs9zpnYWQECE/review" target="_blank" rel="noopener" style="display:flex;margin-bottom:12px"><span data-en>⭐ Leave a Google review</span><span data-es>⭐ Deja una reseña en Google</span></a>
   <form class="ask" id="ask" method="post" action="https://docs.google.com/forms/d/e/1FAIpQLSeeZveoGx3q3Fksyh367MSqCNitjR4zLjzih0BcO07PlFBfcA/formResponse">
-    <input type="hidden" name="entry.1648541527" value="Machine 107">
+    <input type="hidden" name="entry.1648541527" id="machine" value="Machine 107">
     <fieldset class="kind stack">
       <legend class="sr"><span data-en>What is this about?</span><span data-es>¿De qué se trata?</span></legend>
       <input type="radio" id="k0" name="entry.733703616" value="Request / Pedido" required>
@@ -80,6 +88,7 @@ body.es [data-es] { display: revert; }
         <input type="radio" id="c5" name="entry.1419098030" value="Something else / Otra cosa">
         <label for="c5"><span data-en>Something else</span><span data-es>Otra cosa</span></label>
       </fieldset>
+
       <div>
         <label class="q" for="msg"><span data-en id="msg-en">Which item? Tell us more</span><span data-es id="msg-es">¿Qué producto? Cuéntanos más</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></label>
         <textarea id="msg" name="entry.1256768243" maxlength="1000"></textarea>
@@ -99,12 +108,15 @@ body.es [data-es] { display: revert; }
     <a class="btn primary" href="https://g.page/r/Carqs9zpnYWQECE/review" target="_blank" rel="noopener" style="margin-bottom:10px"><span data-en>⭐ Leave a Google review</span><span data-es>⭐ Deja una reseña en Google</span></a>
     <button class="btn ghost" type="button" id="again"><span data-en>Send another</span><span data-es>Enviar otro</span></button>
   </div>
-  <div class="stack" style="margin-top:0">
-    <a class="btn ghost" href="https://g.page/r/Carqs9zpnYWQECE/review" target="_blank" rel="noopener"><span data-en>⭐ Leave a Google review</span><span data-es>⭐ Deja una reseña en Google</span></a>
-    <a class="btn ghost" href="tel:+13033350805"><span data-en>Call 303-335-0805</span><span data-es>Llamar 303-335-0805</span></a>
+  <div class="links stack">
+    <a class="btn ghost" href="../../card/elias.vcf"><span data-en>👤 Save my contact</span><span data-es>👤 Guardar mi contacto</span></a>
+    <a class="btn ghost" href="tel:+13033350805"><span data-en>📞 Call 303-335-0805</span><span data-es>📞 Llamar 303-335-0805</span></a>
+    <a class="btn ghost" href="sms:+13033350805"><span data-en>💬 Text me</span><span data-es>💬 Mándame un mensaje</span></a>
+    <a class="btn ghost" href="mailto:info@glassfrontmarkets.com"><span data-en>✉️ Email me</span><span data-es>✉️ Mándame un correo</span></a>
+    <a class="btn ghost" href="../../"><span data-en>🌐 See what we do</span><span data-es>🌐 Lo que hacemos</span></a>
   </div>
   <div class="rule"></div>
-  <small><span data-en>Thanks for helping us stock what you love.</span><span data-es>Gracias por ayudarnos a tener lo que te gusta.</span><br>GlassFront Markets · <a href="../../">glassfrontmarkets.com</a></small>
+  <small>Locally Owned ◆ Tap or Cash ◆ Smart Restocking<br>GlassFront Markets · <a href="../../">glassfrontmarkets.com</a></small>
 </main>
 <script>
 (function () {
@@ -137,6 +149,8 @@ body.es [data-es] { display: revert; }
     ev.preventDefault();
     if (!form.querySelector('input[name="entry.733703616"]:checked')) return;
     send.disabled = true; bad.hidden = true;
+    var where = document.getElementById("where");   /* /card only: which machine or place, if they say */
+    if (where) document.getElementById("machine").value = "Business card" + (where.value.trim() ? ": " + where.value.trim() : "");
     var body = new URLSearchParams(new FormData(form));
     var ctl = window.AbortController ? new AbortController() : null;
     var timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;

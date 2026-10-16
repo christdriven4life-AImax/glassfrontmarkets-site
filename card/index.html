@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Elias · GlassFront Markets</title>
-<meta name="description" content="Elias, Owner of GlassFront Markets. Save my contact, call or email.">
+<meta name="description" content="Elias, Owner of GlassFront Markets. Ask for a snack, report a problem, leave a review, save my contact.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GlassFront Markets">
 <meta property="og:title" content="Elias · GlassFront Markets">
@@ -18,26 +18,164 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css?v=20261016c">
+<link rel="stylesheet" href="../assets/style.css?v=20261016d">
+<style>
+.lang { display: flex; justify-content: flex-end; gap: 6px; padding: 12px 16px 0; }   /* its own row: absolute sat on the logo on phones (10-09) */
+.lang button { font: 600 13px var(--sans); border: 1.5px solid var(--navy); background: #fff; color: var(--navy); border-radius: 8px; padding: 5px 10px; }
+.lang button.on { background: var(--navy); color: #fff; }
+.machine { color: var(--slate); font-weight: 600; letter-spacing: 3px; font-size: 13px; margin-top: 22px; }
+.cardpage h1 { font: 700 24px/1.2 var(--sans); font-style: normal; margin: 8px 0 4px; }
+.cardpage .flip { margin-top: 6px; }
+.ask .kind.stack { margin-bottom: 12px; }
+.links.stack { margin-top: 0; }
+.big { font-size: 18px !important; padding: 18px !important; }
+[data-es] { display: none; }
+body.es [data-en] { display: none; }
+body.es [data-es] { display: revert; }
+/* v2 (10-11): the form lives on this page; the machine is a hidden fixed value */
+.ask { text-align: left; }
+.ask fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.ask legend, .ask .q { display: block; font-weight: 600; font-size: 16px; color: var(--ink); margin: 0 0 8px; padding: 0; }
+.ask .opt { font-weight: 400; color: var(--muted); font-size: 14px; }
+.ask input[type=radio] { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.kind label { cursor: pointer; width: 100%; }
+.kind input:checked + label { background: var(--navy); color: #fff; }
+.kind input:focus-visible + label, .chips input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 2px; }
+.more { display: grid; gap: 18px; margin: 4px 0 18px; }
+.more[hidden], .ask [hidden] { display: none !important; }
+.chips { display: grid; gap: 8px; }
+.chips label { display: block; cursor: pointer; border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; font-size: 16px; background: #fff; }
+.chips input:checked + label { border-color: var(--navy); background: var(--mist); color: var(--navy); font-weight: 600; box-shadow: inset 0 0 0 1px var(--navy); }
+.ask textarea, .ask input[type=text] { width: 100%; font: 16px/1.4 var(--sans); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; background: #fff; color: var(--ink); }
+.ask textarea { min-height: 96px; resize: vertical; }
+.ask textarea:focus, .ask input[type=text]:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(0, 142, 255, .18); }
+.ask button.btn { width: 100%; cursor: pointer; }
+.ask button[disabled] { opacity: .6; cursor: default; }
+.note { text-align: center; border-radius: 14px; padding: 22px 18px; margin: 26px 0 18px; }
+.note.ok { background: var(--mist); border: 1px solid var(--line); }
+.note.ok h2 { font: 700 24px/1.2 var(--sans); color: var(--navy); margin: 0 0 6px; }
+.note.bad { background: #fff4f2; border: 1px solid #f1c5bd; color: #8a2a1b; margin: 0 0 12px; padding: 14px; font-size: 15px; }
+</style>
+<noscript><style>.ask .more { display: grid !important; }</style></noscript>
 </head>
 <body class="card">
-<!-- What the business card's QR opens (glassfrontmarkets.com/card). The printed QR never changes; this page can. -->
+<div class="lang"><button type="button" id="en">EN</button><button type="button" id="es">ES</button></div>
 <main class="cardpage">
-  <button class="flip" type="button" aria-label="My business card. Tap to see the back." onclick="this.classList.toggle('back')">
-    <span class="face front"><img src="card_front.webp?v=20261016" alt="Business card front: GlassFront Markets, Elias, Owner"></span>
-    <span class="face rear"><img src="card_back.webp" alt="Business card back: You provide the space. We handle the rest."></span>
+  <button class="flip" type="button" aria-label="Business card. Tap to see the back." onclick="this.classList.toggle('back')">
+    <span class="face front"><img src="../card/card_front.webp?v=20261016" alt="Business card front: GlassFront Markets, Elias, Owner"></span>
+    <span class="face rear"><img src="../card/card_back.webp" alt="Business card back: You provide the space. We handle the rest."></span>
   </button>
-  <div class="hint">Tap the card to flip it</div>
-  <h1 class="sr">Elias · Owner</h1>
-  <div class="stack">
-    <a class="btn primary" href="elias.vcf">Save my contact</a>
-    <a class="btn ghost" href="tel:+13033350805">Call 303-335-0805</a>
-    <a class="btn ghost" href="sms:+13033350805">Text me</a>
-    <a class="btn ghost" href="mailto:info@glassfrontmarkets.com">Email info@glassfrontmarkets.com</a>
-    <a class="btn ghost" href="../">See what we do</a>
+  <div class="hint"><span data-en>Tap the card to flip it</span><span data-es>Toca la tarjeta para voltearla</span></div>
+  <h1 class="sr">Elias · Owner, GlassFront Markets</h1>
+  <div style="height:22px"></div>
+  <a class="btn primary big" href="https://g.page/r/Carqs9zpnYWQECE/review" target="_blank" rel="noopener" style="display:flex;margin-bottom:12px"><span data-en>⭐ Leave a Google review</span><span data-es>⭐ Deja una reseña en Google</span></a>
+  <form class="ask" id="ask" method="post" action="https://docs.google.com/forms/d/e/1FAIpQLSeeZveoGx3q3Fksyh367MSqCNitjR4zLjzih0BcO07PlFBfcA/formResponse">
+    <input type="hidden" name="entry.1648541527" id="machine" value="Business card">
+    <fieldset class="kind stack">
+      <legend class="sr"><span data-en>What is this about?</span><span data-es>¿De qué se trata?</span></legend>
+      <input type="radio" id="k0" name="entry.733703616" value="Request / Pedido" required>
+      <label class="btn ghost big" for="k0"><span data-en>🍫 What should we carry?</span><span data-es>🍫 ¿Qué quieres que tengamos?</span></label>
+      <input type="radio" id="k1" name="entry.733703616" value="Problem / Problema" required>
+      <label class="btn ghost big" for="k1"><span data-en>🛠 Something wrong?</span><span data-es>🛠 ¿Algo no funciona?</span></label>
+    </fieldset>
+    <div class="more" id="more" hidden>
+      <fieldset class="chips" id="cats">
+        <legend><span data-en>What kind?</span><span data-es>¿De qué tipo?</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></legend>
+        <input type="radio" id="c0" name="entry.1419098030" value="Chips &amp; salty snacks / Papitas y botanas">
+        <label for="c0"><span data-en>Chips &amp; salty snacks</span><span data-es>Papitas y botanas</span></label>
+        <input type="radio" id="c1" name="entry.1419098030" value="Candy &amp; sweets / Dulces">
+        <label for="c1"><span data-en>Candy &amp; sweets</span><span data-es>Dulces</span></label>
+        <input type="radio" id="c2" name="entry.1419098030" value="Healthier snacks / Botanas más saludables">
+        <label for="c2"><span data-en>Healthier snacks</span><span data-es>Botanas más saludables</span></label>
+        <input type="radio" id="c3" name="entry.1419098030" value="Drinks: water, soda, juice / Bebidas: agua, refresco, jugo">
+        <label for="c3"><span data-en>Drinks: water, soda, juice</span><span data-es>Bebidas: agua, refresco, jugo</span></label>
+        <input type="radio" id="c4" name="entry.1419098030" value="Energy drinks / Bebidas energéticas">
+        <label for="c4"><span data-en>Energy drinks</span><span data-es>Bebidas energéticas</span></label>
+        <input type="radio" id="c5" name="entry.1419098030" value="Something else / Otra cosa">
+        <label for="c5"><span data-en>Something else</span><span data-es>Otra cosa</span></label>
+      </fieldset>
+      <div>
+        <label class="q" for="where"><span data-en>Which machine or place?</span><span data-es>¿Qué máquina o lugar?</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></label>
+        <input type="text" id="where" maxlength="120" autocomplete="off">
+      </div>
+      <div>
+        <label class="q" for="msg"><span data-en id="msg-en">Which item? Tell us more</span><span data-es id="msg-es">¿Qué producto? Cuéntanos más</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></label>
+        <textarea id="msg" name="entry.1256768243" maxlength="1000"></textarea>
+      </div>
+      <div>
+        <label class="q" for="who"><span data-en>Your name or phone, if you'd like a reply</span><span data-es>Tu nombre o teléfono, si quieres respuesta</span> <span class="opt"><span data-en>(optional)</span><span data-es>(opcional)</span></span></label>
+        <input type="text" id="who" name="entry.1840015842" maxlength="120" autocomplete="off">
+      </div>
+      <div class="note bad" id="bad" hidden role="alert"><span data-en>That didn't send. Please try again, or call 303-335-0805.</span><span data-es>No se envió. Inténtalo otra vez o llama al 303-335-0805.</span></div>
+      <button class="btn primary big" type="submit" id="send"><span data-en>Send</span><span data-es>Enviar</span></button>
+    </div>
+  </form>
+  <div class="note ok" id="thanks" hidden role="status" tabindex="-1">
+    <h2><span data-en>Thank you!</span><span data-es>¡Gracias!</span></h2>
+    <p style="margin:0 0 14px" id="thanks-req"><span data-en>Thanks for sharing your snacking style! We read every note.</span><span data-es>¡Gracias por compartir tu estilo de snack! Leemos cada mensaje.</span></p>
+    <p style="margin:0 0 14px" id="thanks-prob" hidden><span data-en>Thanks, we're on it.</span><span data-es>Gracias, ya nos encargamos.</span></p>
+    <a class="btn primary" href="https://g.page/r/Carqs9zpnYWQECE/review" target="_blank" rel="noopener" style="margin-bottom:10px"><span data-en>⭐ Leave a Google review</span><span data-es>⭐ Deja una reseña en Google</span></a>
+    <button class="btn ghost" type="button" id="again"><span data-en>Send another</span><span data-es>Enviar otro</span></button>
+  </div>
+  <div class="links stack">
+    <a class="btn ghost" href="../card/elias.vcf"><span data-en>👤 Save my contact</span><span data-es>👤 Guardar mi contacto</span></a>
+    <a class="btn ghost" href="tel:+13033350805"><span data-en>📞 Call 303-335-0805</span><span data-es>📞 Llamar 303-335-0805</span></a>
+    <a class="btn ghost" href="sms:+13033350805"><span data-en>💬 Text me</span><span data-es>💬 Mándame un mensaje</span></a>
+    <a class="btn ghost" href="mailto:info@glassfrontmarkets.com"><span data-en>✉️ Email me</span><span data-es>✉️ Mándame un correo</span></a>
+    <a class="btn ghost" href="../"><span data-en>🌐 See what we do</span><span data-es>🌐 Lo que hacemos</span></a>
   </div>
   <div class="rule"></div>
-  <small>Locally Owned ◆ Tap or Cash ◆ Smart Restocking</small>
+  <small>Locally Owned ◆ Tap or Cash ◆ Smart Restocking<br>GlassFront Markets · <a href="../">glassfrontmarkets.com</a></small>
 </main>
+<script>
+(function () {
+  var saved = null; try { saved = localStorage.getItem("gfm_lang"); } catch (e) {}
+  var es = saved ? saved === "es" : (navigator.language || "").toLowerCase().indexOf("es") === 0;
+  function set(isEs) {
+    document.body.classList.toggle("es", isEs); document.documentElement.lang = isEs ? "es" : "en";
+    document.getElementById("es").classList.toggle("on", isEs); document.getElementById("en").classList.toggle("on", !isEs);
+    try { localStorage.setItem("gfm_lang", isEs ? "es" : "en"); } catch (e) {}
+  }
+  document.getElementById("en").onclick = function () { set(false); };
+  document.getElementById("es").onclick = function () { set(true); };
+  set(es);
+
+  var form = document.getElementById("ask"), more = document.getElementById("more"), cats = document.getElementById("cats");
+  var send = document.getElementById("send"), bad = document.getElementById("bad"), thanks = document.getElementById("thanks");
+  var REQUEST = "Request / Pedido";
+  function pick() {
+    var k = form.querySelector('input[name="entry.733703616"]:checked');
+    if (!k) return;
+    var isReq = k.value === REQUEST;
+    more.hidden = false;
+    cats.hidden = !isReq; cats.disabled = !isReq;   /* a problem report sends no category */
+    document.getElementById("msg-en").textContent = isReq ? "Which item? Tell us more" : "What's wrong?";
+    document.getElementById("msg-es").textContent = isReq ? "¿Qué producto? Cuéntanos más" : "¿Qué no funciona?";
+  }
+  Array.prototype.forEach.call(form.querySelectorAll('input[name="entry.733703616"]'), function (r) { r.addEventListener("change", pick); });
+  pick();
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (!form.querySelector('input[name="entry.733703616"]:checked')) return;
+    send.disabled = true; bad.hidden = true;
+    var where = document.getElementById("where");   /* /card only: which machine or place, if they say */
+    if (where) document.getElementById("machine").value = "Business card" + (where.value.trim() ? ": " + where.value.trim() : "");
+    var body = new URLSearchParams(new FormData(form));
+    var ctl = window.AbortController ? new AbortController() : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
+    fetch(form.action, { method: "POST", mode: "no-cors", body: body, signal: ctl ? ctl.signal : undefined })
+      .then(function () {
+        var kk = form.querySelector('input[name="entry.733703616"]:checked'), prob = !!(kk && kk.value.indexOf("Problem") === 0);
+        document.getElementById("thanks-req").hidden = prob; document.getElementById("thanks-prob").hidden = !prob;
+        form.hidden = true; thanks.hidden = false; thanks.focus();
+      })
+      .catch(function () { bad.hidden = false; })
+      .then(function () { if (timer) clearTimeout(timer); send.disabled = false; });
+  });
+  document.getElementById("again").onclick = function () {
+    form.reset(); more.hidden = true; thanks.hidden = true; form.hidden = false; window.scrollTo(0, 0);
+  };
+})();
+</script>
 </body>
 </html>
