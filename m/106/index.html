@@ -94,7 +94,8 @@ body.es [data-es] { display: revert; }
   </form>
   <div class="note ok" id="thanks" hidden role="status" tabindex="-1">
     <h2><span data-en>Thank you!</span><span data-es>¡Gracias!</span></h2>
-    <p style="margin:0 0 14px"><span data-en>We got it. We read every note.</span><span data-es>Lo recibimos. Leemos cada mensaje.</span></p>
+    <p style="margin:0 0 14px" id="thanks-req"><span data-en>Thanks for sharing your snacking style! We read every note.</span><span data-es>¡Gracias por compartir tu estilo de snack! Leemos cada mensaje.</span></p>
+    <p style="margin:0 0 14px" id="thanks-prob" hidden><span data-en>Thanks, we're on it.</span><span data-es>Gracias, ya nos encargamos.</span></p>
     <a class="btn primary" href="https://g.page/r/Carqs9zpnYWQECE/review" target="_blank" rel="noopener" style="margin-bottom:10px"><span data-en>⭐ Leave a Google review</span><span data-es>⭐ Deja una reseña en Google</span></a>
     <button class="btn ghost" type="button" id="again"><span data-en>Send another</span><span data-es>Enviar otro</span></button>
   </div>
@@ -141,6 +142,8 @@ body.es [data-es] { display: revert; }
     var timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
     fetch(form.action, { method: "POST", mode: "no-cors", body: body, signal: ctl ? ctl.signal : undefined })
       .then(function () {
+        var kk = form.querySelector('input[name="entry.733703616"]:checked'), prob = !!(kk && kk.value.indexOf("Problem") === 0);
+        document.getElementById("thanks-req").hidden = prob; document.getElementById("thanks-prob").hidden = !prob;
         form.hidden = true; thanks.hidden = false; thanks.focus();
       })
       .catch(function () { bad.hidden = false; })
