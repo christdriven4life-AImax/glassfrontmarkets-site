@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20261016d">
+<link rel="stylesheet" href="assets/style.css?v=20261016e">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -213,15 +213,15 @@
         <ul>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:info@glassfrontmarkets.com">info@glassfrontmarkets.com</a></li>
           <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+13033350805">303-335-0805</a></li>
-          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Owner's phone: Monday to Friday, 8 to 5. The markets run around the clock.</span></li>
+          <li><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span>Elias's phone: Monday to Friday, 8 to 5. The markets run around the clock.</span></li>
         </ul>
         <div class="buttons" style="margin-top:18px"><a class="btn ghost" href="card/elias.vcf">Save my contact</a></div>
       </div>
       <div class="request" id="request">
         <h2>Want a market at your location?</h2>
         <p>Tell us a little about your space and we'll take it from there. The owner reads every request the day it comes in.</p>
-        <a class="btn primary" href="mailto:info@glassfrontmarkets.com?subject=Market%20request%20for%20my%20location&amp;body=Business%20name%3A%0AAddress%3A%0AContact%20name%2C%20phone%20or%20email%3A%0AAbout%20how%20many%20employees%20on%20site%20each%20day%3A%0AHours%20of%20operation%3A%0ASnacks%2C%20drinks%2C%20or%20both%3A%0AAnything%20you%20would%20like%20in%20it%3A%0AHow%20did%20you%20hear%20about%20us%3A%0A">Request a market</a>
-        <p class="request-alt">Or call <a href="tel:+13033350805">303-335-0805</a>.</p>
+        <button type="button" class="btn primary" data-request>Request a market</button>
+        <p class="request-alt">Or call <a href="tel:+13033350805">303-335-0805</a>, or <a class="mail-alt" href="mailto:info@glassfrontmarkets.com?subject=Market%20request%20for%20my%20location&amp;body=Business%20name%3A%0AAddress%3A%0AContact%20name%2C%20phone%20or%20email%3A%0AAbout%20how%20many%20employees%20on%20site%20each%20day%3A%0AHours%20of%20operation%3A%0ASnacks%2C%20drinks%2C%20or%20both%3A%0AAnything%20you%20would%20like%20in%20it%3A%0AHow%20did%20you%20hear%20about%20us%3A%0A">email us the details</a>.</p>
       </div>
     </div>
   </section>
@@ -236,5 +236,71 @@
   <a class="btn ghost" href="tel:+13033350805"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
   <a class="btn primary" href="#request">Request a market</a>
 </div>
+<!-- Request popup (Elias 10-16: yes). Posts to the live sticker form, so HQ's qr_requests watcher pushes it to Elias's
+     phone within a minute: kind Request, machine "Website request", the answers in the message. Same form IDs as
+     tools/machine_pages.py FORM; change both together. -->
+<dialog id="reqdlg" aria-labelledby="reqdlg-h">
+  <form id="reqform" method="dialog" novalidate>
+    <button type="button" class="x" data-close aria-label="Close">×</button>
+    <h2 id="reqdlg-h">Request a market</h2>
+    <p class="lead">A few quick answers and Elias gets back to you the same day.</p>
+    <label>Business name<input name="biz" required autocomplete="organization"></label>
+    <label>Address<input name="addr" required autocomplete="street-address"></label>
+    <label>Your name<input name="who" required autocomplete="name"></label>
+    <label>Phone or email<input name="reach" required autocomplete="tel"></label>
+    <div class="two">
+      <label>Employees on site each day<input name="ppl" inputmode="numeric" placeholder="about"></label>
+      <label>Hours<input name="hrs" placeholder="e.g. 6am to 6pm"></label>
+    </div>
+    <fieldset><legend>Snacks, drinks, or both?</legend>
+      <label class="chip"><input type="radio" name="what" value="Snacks">Snacks</label>
+      <label class="chip"><input type="radio" name="what" value="Drinks">Drinks</label>
+      <label class="chip"><input type="radio" name="what" value="Both" checked>Both</label>
+    </fieldset>
+    <label>Anything you would like in it<textarea name="wish" rows="2"></textarea></label>
+    <label>How did you hear about us?<input name="heard"></label>
+    <p class="bad" id="reqbad" hidden>That didn't send. Please call 303-335-0805 or email info@glassfrontmarkets.com.</p>
+    <p class="bad" id="reqmiss" hidden>Please fill in the business, address, your name and a phone or email.</p>
+    <button type="submit" class="btn primary" id="reqsend">Send request</button>
+  </form>
+  <div id="reqthanks" hidden tabindex="-1">
+    <h2>Thank you!</h2>
+    <p class="lead">Your request is in. Elias will reach out the same day, Monday to Friday.</p>
+    <button type="button" class="btn primary" data-close>Close</button>
+  </div>
+</dialog>
+<script>
+(function () {
+  var d = document.getElementById("reqdlg"), f = document.getElementById("reqform");
+  if (!d || typeof d.showModal !== "function") return;   /* old browsers: the links still scroll to the box + email */
+  var ACTION = "https://docs.google.com/forms/d/e/1FAIpQLSeeZveoGx3q3Fksyh367MSqCNitjR4zLjzih0BcO07PlFBfcA/formResponse";
+  function open(ev) { if (ev) ev.preventDefault(); d.showModal(); var b = f.querySelector("input"); if (b && !f.hidden) b.focus(); }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-request], a[href="#request"]'), function (a) { a.addEventListener("click", open); });
+  Array.prototype.forEach.call(d.querySelectorAll("[data-close]"), function (b) { b.addEventListener("click", function () { d.close(); }); });
+  d.addEventListener("click", function (ev) { if (ev.target === d) d.close(); });
+  f.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var v = function (n) { var e = f.elements[n]; return e ? String(e.value || "").trim() : ""; };
+    var miss = ["biz", "addr", "who", "reach"].some(function (n) { return !v(n); });
+    document.getElementById("reqmiss").hidden = !miss; if (miss) return;
+    var send = document.getElementById("reqsend"), bad = document.getElementById("reqbad");
+    send.disabled = true; bad.hidden = true;
+    var msg = ["Business: " + v("biz"), "Address: " + v("addr"), "Employees on site daily: " + (v("ppl") || "-"),
+               "Hours: " + (v("hrs") || "-"), "Wants: " + v("what"), "Would like in it: " + (v("wish") || "-"),
+               "Heard about us: " + (v("heard") || "-")].join("\n");
+    var body = new URLSearchParams();
+    body.append("entry.733703616", "Request / Pedido");
+    body.append("entry.1648541527", "Website request");
+    body.append("entry.1256768243", msg);
+    body.append("entry.1840015842", v("who") + " · " + v("reach"));
+    var ctl = window.AbortController ? new AbortController() : null, timer = ctl ? setTimeout(function () { ctl.abort(); }, 20000) : null;
+    fetch(ACTION, { method: "POST", mode: "no-cors", body: body, signal: ctl ? ctl.signal : undefined })
+      .then(function () { f.hidden = true; var t = document.getElementById("reqthanks"); t.hidden = false; t.focus(); f.reset(); })
+      .catch(function () { bad.hidden = false; })
+      .then(function () { if (timer) clearTimeout(timer); send.disabled = false; });
+  });
+  d.addEventListener("close", function () { f.hidden = false; document.getElementById("reqthanks").hidden = true; });
+})();
+</script>
 </body>
 </html>

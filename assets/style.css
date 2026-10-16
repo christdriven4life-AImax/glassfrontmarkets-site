@@ -256,3 +256,28 @@ footer p { margin: 4px 0; }
   .who-line { font-size: 17px; }
 }
 @media (prefers-reduced-motion: reduce) { #faq summary::after { transition: none; } }
+
+/* Request popup (10-16) */
+#reqdlg { border: 0; border-radius: 16px; padding: 0; width: min(560px, calc(100vw - 32px)); max-height: calc(100dvh - 32px);
+  color: var(--ink); background: var(--paper); box-shadow: 0 24px 60px rgba(10, 47, 87, .35); }
+#reqdlg::backdrop { background: rgba(10, 47, 87, .55); }
+#reqdlg form, #reqthanks { padding: 26px 24px 24px; position: relative; display: grid; gap: 12px; }
+#reqdlg h2 { font: 400 26px var(--serif); margin: 0; color: var(--navy-deep); }
+#reqdlg .lead { margin: 0 0 4px; color: var(--muted); }
+#reqdlg label { display: grid; gap: 5px; font: 600 14px var(--sans); color: var(--slate); }
+#reqdlg input:not([type=radio]), #reqdlg textarea { font: 400 16px var(--sans); padding: 11px 12px; border: 1px solid var(--line);
+  border-radius: 9px; width: 100%; color: var(--ink); background: #fff; }
+#reqdlg input:focus, #reqdlg textarea:focus { outline: 3px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+#reqdlg .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: end; }
+@media (max-width: 480px) { #reqdlg .two { grid-template-columns: 1fr; } }
+#reqdlg fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+#reqdlg legend { font: 600 14px var(--sans); color: var(--slate); margin-bottom: 6px; width: 100%; }
+#reqdlg .chip { display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+  font-weight: 500; color: var(--ink); cursor: pointer; }
+#reqdlg .chip:has(input:checked) { background: var(--navy); border-color: var(--navy); color: #fff; }
+#reqdlg .x { position: absolute; top: 10px; right: 12px; border: 0; background: none; font-size: 28px; line-height: 1; color: var(--muted);
+  cursor: pointer; padding: 6px 10px; }
+#reqdlg .bad { color: #b42318; margin: 0; font-weight: 500; }
+#reqdlg .btn { justify-content: center; border: 0; cursor: pointer; }
+.request button.btn { border: 0; cursor: pointer; }
+.request-alt .mail-alt { color: #fff; }
