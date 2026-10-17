@@ -228,7 +228,7 @@ section .sub { text-align: left; margin-left: 0; }
 .request:target { box-shadow: 0 0 0 4px var(--accent); }
 
 footer p { margin: 4px 0; }
-.footer-review a { color: var(--navy); }
+.footer-review a, .footer-ig a { color: var(--navy); }
 
 @media (max-width: 900px) {
   .hero2-grid { grid-template-columns: 1fr; gap: 20px; text-align: center; padding-top: 14px; }
